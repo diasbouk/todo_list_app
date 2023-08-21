@@ -10,14 +10,14 @@ const  {createApp , ref}= Vue
       const todoItem =ref({
         'id':id,'description':'','done':false
       }) 
+       
       function deleteList() {
         liste.value=[]
         location.reload()
       }  
-
       function emptyTodoItem() {
         todoItem.value = {
-          'id': id++, 'description': '', 'complete': false
+          'id': id++, 'description': '', 'done': false
         }
       }
 
@@ -40,6 +40,8 @@ const  {createApp , ref}= Vue
       function deleteTodo() {
         liste.value = liste.value.filter(todo => todo.id !== todoItem.value.id)
         emptyTodoItem()
+        todoItem.id = id--
+        
       }
       function preupdate(update) {
         todoItem.value=update
@@ -60,6 +62,7 @@ const  {createApp , ref}= Vue
         todoItem.value =  {
           'id' : id , 'description' : '' , 'done' : false
         }
+        
       }
        
 
