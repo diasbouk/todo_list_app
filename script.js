@@ -1,5 +1,5 @@
 
-const  {createApp , ref}= Vue
+const  {createApp , ref , computed}= Vue
   createApp ({
     setup() {
       let id = 1
@@ -10,6 +10,18 @@ const  {createApp , ref}= Vue
       const todoItem =ref({
         'id':id,'description':'','done':false
       }) 
+      
+
+      const  completedTasks = computed(() => {
+    return liste.value.filter(task => task.done == true)
+    })
+
+
+
+       const unCompletedTasks = computed(() => {
+        return liste.value.filter(task => task.done == false)
+        })
+      
        
       function deleteList() {
         liste.value=[]
@@ -48,13 +60,13 @@ const  {createApp , ref}= Vue
       }
       function updateTodo() {
         liste.value = liste.value.update (todo => todo.id != todoItem.value.id)
-					todoList.value.push(todoItem.value)
+					liste.value.push(todoItem.value)
           emptyTodoItem()
-          todoList.value = todoList.value.sort((a,b) => a.id - b.id )
+          liste.value = liste.value.sort((a,b) => a.id - b.id )
       }
 
       function emptyData() {
-        todoList.value = []
+        liste.value = []
         id = 1
       }
 
@@ -64,10 +76,11 @@ const  {createApp , ref}= Vue
         }
         
       }
+
        
 
       return {
-        liste, todoItem , addTodo , returnToTodo , deleteList , deleteTodo , predeleteTodo , preupdate , updateTodo , emptyData , showTodo , emptyTodoItem ,  
+        liste, todoItem , completedTasks , unCompletedTasks ,  addTodo , returnToTodo , deleteList , deleteTodo , predeleteTodo , preupdate , updateTodo , emptyData , showTodo , emptyTodoItem ,  
       }
     }
   }).mount("#app")
