@@ -22,15 +22,9 @@
                   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                  <ul>
-                    <li>
-                      <a class="fs-2 text-dark" href="">Statics</a>
-                    </li>
-                    <li>
-                      <a class="fs-2 text-dark" href="">History</a>
-                    </li>
-                  </ul>
-                </div>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control" placeholder="Find tasks" aria-label="Username" aria-describedby="addon-wrapping">
               </div>
 
             </div>   
@@ -40,10 +34,10 @@
         <div>
            
             <div class="btn-group me-2">
-              <button @click="emptyTodoItem()" type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa-solid fa-plus"></i></button>
+              <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="btn-group me-2">
-              <button type="button" class="btn btn-secondary btn-lg" @click="deleteList()"><i class="fa-solid fa-trash"></i></button>
+              <button type="button" class="btn btn-secondary btn-lg" @click="emptyData()"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
         </div>
