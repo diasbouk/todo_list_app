@@ -18,7 +18,17 @@ const  {createApp , ref , computed}= Vue
 
        const unCompletedTasks = computed(() => {
         return liste.value.filter(task => task.done == false)
-        })
+       })
+      
+      function uploadTodo() {
+        liste.value = [
+          { 'id': 1, 'description': 'Task 1', 'done': false },
+          { 'id': 2, 'description': 'Task 2', 'done': false },
+          { 'id': 3, 'description': 'Task 3', 'done': false },
+          { 'id': 4, 'description': 'Task 4', 'done': false },
+          { 'id': 5, 'description': 'Task 5', 'done': false }
+        ]
+      }
       
        
       function emptyData() {
@@ -75,7 +85,7 @@ const  {createApp , ref , computed}= Vue
        
 
       return {
-        liste, todoItem , completedTasks , unCompletedTasks ,  addTodo , returnToTodo , deleteTodo , predeleteTodo , preupdate , updateTodo , emptyData , showTodo , emptyTodoItem ,  
+        liste, todoItem , uploadTodo , completedTasks , unCompletedTasks ,  addTodo , returnToTodo , deleteTodo , predeleteTodo , preupdate , updateTodo , emptyData , showTodo , emptyTodoItem ,  
       }
     }
   }).mount("#app")
