@@ -11,13 +11,13 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-primary bg-primary mb-2 shadow p-3 mb-2 bg-body-tertiary">
+        <nav class="navbar navbar-warning bg-warning mb-2 shadow-lg p-3 mb-2 bg-body-tertiary">
             <div class="container-fluid">
               <!-- options sidebar  -->
 
             </div>   
         </nav>
-      <div class="d-flex justify-content-between bg-primary p-2 text-white mb-2 shadow p-3 mb-2 bg-body-tertiary">
+      <div class="d-flex justify-content-between bg-warning p-2 text-white mb-2 shadow-lg p-3 mb-2 bg-body-tertiary">
         <h1>Your List</h1>
         <div>
 
@@ -36,9 +36,9 @@
 
         <!-- Cards -->
 
-        <div class="row mb-2 shadow p-3 mb-2 bg-body-tertiary rounded">  
+        <div class="row mb-2 shadow-lg p-3 mb-2 bg-body-tertiary rounded">  
             <div class="col-4  ">
-               <div class="card bg-primary">
+               <div class="card bg-warning">
                   <h5 class="card-header text-white text-center">DONE</h5>
                  <div class="card-body d-flex justify-content-center">
                  <h1 class="text-white">{{completedTasks.length}}</h1>
@@ -46,7 +46,7 @@
                </div>
              </div>
              <div class="col-4">
-               <div class="card bg-primary">
+               <div class="card bg-warning">
                    <h5 class="card-header text-white text-center">ALL TASKS</h5>
                    <div class="card-body d-flex justify-content-center">
                      <h1 class=" text-white ">{{liste.length}}</h1>
@@ -54,7 +54,7 @@
               </div>
              </div> 
              <div class="col-4">
-               <div class="card bg-primary">
+               <div class="card bg-warning">
                   <h5 class="card-header text-white text-center">UNDONE</h5>
                  <div class="card-body d-flex justify-content-center">
                    <h1 class=" text-white ">{{unCompletedTasks.length}}</h1>
@@ -92,7 +92,7 @@
                         </button>
                     </td>
                     <td v-if="task.done">
-                        <button class="btn btn-primary rounded" @click="task.done=false">
+                        <button class="btn btn-warning rounded" @click="task.done=false">
                           <i class="fa-solid fa-check"></i>
                         </button>
                       </td>
@@ -125,7 +125,7 @@
                     <label for="exampleInputPassword1" class="form-label">Task description</label>
                     <input type="text" name="description" id="description" class="form-control" required="required" v-model="todoItem.description"/>	
                   </div>
-                  <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Add task</button>
+                  <button type="submit" data-bs-dismiss="modal" class="btn btn-warning">Add task</button>
                 </form>
               </div>
               <div class="modal-footer">
@@ -186,7 +186,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add task</button>
+                  <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Add task</button>
                 </div>
               </div>
             </div>
