@@ -1,3 +1,7 @@
-#Todo-List app
-this is the the version 1.0.0 of the todolist app
-made with HTML , Bootstrap and Vue
+# Todo-List app
+    TO-DO list web app
+    made with HTML , Bootstrap and Vue.js
+# Version
+    1.0.2
+# Athour
+    Dias
