@@ -3,33 +3,61 @@ createApp({
 	setup() {
 		const idSt = ref(1);
 		const showStatics = ref(false);
+		const showCalendar = ref(false);
+		let spinner = ref(true);
 		const liste = ref([]);
+		const loginform = ref(true);
+		const user = { username: "", password: "" };
 		const searcheString = ref("");
 		const todoItem = ref({
 			id: idSt.value,
 			description: "",
 			status: "",
 			done: false,
-		});
+		})
 
 		const completedTasks = computed(() => {
 			return liste.value.filter((task) => task.done == true);
 		});
-
 		const unCompletedTasks = computed(() => {
 			return liste.value.filter((task) => task.done == false);
 		});
 
+		const inProgress = computed(() => {
+			return liste.value.filter((task) => task.status == "InProgress");
+		});
+		const canceled = computed(() => {
+			return liste.value.filter((task) => task.status == "Canceled");
+		});
+
+		const timeOut = computed(() => {
+			return liste.value.filter((task) => task.status == "Timeout");
+		});
+
 		function uploadTodo() {
 			liste.value = [
-				{ id: 1, description: "Task 1", done: false, status: "In progress" },
-				{ id: 2, description: "Task 2", done: false, status: "In progress" },
-				{ id: 3, description: "Task 3", done: false, status: "In progress" },
-				{ id: 4, description: "Task 4", done: false, status: "In progress" },
-				{ id: 5, description: "Task 5", done: false, status: "In progress" },
+				{ id: 1, description: "Task 1", done: false, status: "inProgress" },
+				{ id: 2, description: "Task 2", done: true, status: "Done" },
+				{ id: 3, description: "Task 3", done: true, status: "Done" },
+				{ id: 4, description: "Task 4", done: true, status: "Done" },
+				{ id: 5, description: "Task 5", done: true, status: "Done" },
 			];
 			idSt.value = 6;
 			emptyTodoItem();
+
+			$("#calendar").evoCalendar({
+				calendarEvents: [
+					{
+						name: "Test",
+						id: "4hducye", // Event's id (required, for removing event)
+						description: "Lorem ipsum dolor sit amet..", // Description of event (optional)
+						badge: "1-day event", // Event badge (optional)
+						date: new Date(), // Date of event
+						type: "event", // Type of event (event|holiday|birthday)
+						color: "#63d867", // Event custom color (optional)
+					},
+				],
+			});
 		}
 
 		function emptyData() {
@@ -89,16 +117,65 @@ createApp({
 			};
 		}
 
-		function findItem() {
-			liste.value = liste.value.filter((item) => item.description.includes(searcheString));
+		function findItem(items) {
+			liste.value = liste.value.filter((item) =>
+				item.description.toLowerCase().includes(items.toLowerCase()),
+			);
+		}
+
+		function canvas() {
+			showStatics.value = !showStatics.value;
+			setTimeout(
+				() => {
+					spinner.value = false;
+					const ctx = document.getElementById("myChart");
+
+					new Chart(ctx, {
+						type: "doughnut",
+						data: {
+							labels: ["Done", "In progress", "Canceled", "Timeout"],
+							datasets: [
+								{
+									label: "# of Votes",
+									data: [12, 19, 3, 5],
+									borderWidth: 1,
+								},
+							],
+						},
+						options: {
+							scales: {
+								y: {
+									beginAtZero: true,
+								},
+							},
+						},
+					});
+				},
+
+				2000,
+			);
+		}
+		function checkUser() {
+			if (user.username == "dias" && user.password == "dd") {
+				loginform.value = false;
+			}
 		}
 
 		return {
+			showCalendar,
 			liste,
+			unCompletedTasks,
+			canceled,
+			timeOut,
+			inProgress,
+			spinner,
+			loginform,
+			checkUser,
+			user,
+			canvas,
 			todoItem,
 			uploadTodo,
 			completedTasks,
-			unCompletedTasks,
 			addTodo,
 			returnToTodo,
 			deleteTodo,
