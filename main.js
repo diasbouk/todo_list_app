@@ -4,6 +4,7 @@ createApp({
 		const idSt = ref(1);
 		const showStatics = ref(false);
 		const showCalendar = ref(false);
+		const showTable = ref(false);
 		let spinner = ref(true);
 		const liste = ref([]);
 		const loginform = ref(true);
@@ -14,7 +15,7 @@ createApp({
 			description: "",
 			status: "",
 			done: false,
-		})
+		});
 
 		const completedTasks = computed(() => {
 			return liste.value.filter((task) => task.done == true);
@@ -44,11 +45,17 @@ createApp({
 			];
 			idSt.value = 6;
 			emptyTodoItem();
+		}
+		function calendar() {
+			showStatics.value = false;
+			showTable.value = false;
+			showCalendar.value = true;
+			loginform.value = false;
 
 			$("#calendar").evoCalendar({
 				calendarEvents: [
 					{
-						name: "Test",
+						name: "Task 1",
 						id: "4hducye", // Event's id (required, for removing event)
 						description: "Lorem ipsum dolor sit amet..", // Description of event (optional)
 						badge: "1-day event", // Event badge (optional)
@@ -124,7 +131,10 @@ createApp({
 		}
 
 		function canvas() {
-			showStatics.value = !showStatics.value;
+			showStatics.value = true;
+			showTable.value = false;
+			showCalendar.value = false;
+			loginform.value = false;
 			setTimeout(
 				() => {
 					spinner.value = false;
@@ -158,11 +168,22 @@ createApp({
 		function checkUser() {
 			if (user.username == "dias" && user.password == "dd") {
 				loginform.value = false;
+				showTable.value = true;
+			}
+			else {
+				Swal.fire({
+				title: "Failed!",
+				text: "Username or password are incorrect",
+				icon: "error",
+			});
+
 			}
 		}
 
 		return {
 			showCalendar,
+			showTable,
+			calendar,
 			liste,
 			unCompletedTasks,
 			canceled,
