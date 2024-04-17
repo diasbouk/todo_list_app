@@ -166,7 +166,7 @@ createApp({
 			);
 		}
 		function checkUser() {
-			if (user.username == "dias" && user.password == "dd") {
+			if (user.username == "admin" && user.password == "admin") {
 				loginform.value = false;
 				showTable.value = true;
 			}
@@ -181,8 +181,8 @@ createApp({
 		}
 		function logOut() {
 			loginform.value = true
-			user.username.valueOf = ""
-			user.password.valueOf = ""
+			user.username.value = ""
+			user.password.value = ""
 
 
 		}

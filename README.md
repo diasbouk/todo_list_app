@@ -4,6 +4,6 @@
 # Version
     1.0.2
 # Live preview
-    https://diasbouk.github.io/todo_list_app/
+<a href="https://diasbouk.github.io/todo_list_app/">Here</a>
 # Athour
     Dias
