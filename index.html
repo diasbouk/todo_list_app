@@ -40,7 +40,7 @@
 		}
 	</style>
 	<div id="app">
-		<nav class="navbar navbar-dark bg-primary mb-2 shadow-lg p-3 mb-2 bg-body-tertiary">
+		<nav class="navbar navbar-dark bg-primary mb-2 shadow-lg p-3 mb-2 bg-body-tertiary" v-show="!loginform">
 			<div class=" d-flex justify-content-between container-fluid">
 				<!-- options sidebar  -->
 				<h1 class=" text-primary">Your List</h1>
@@ -72,6 +72,11 @@
 						<button @click="calendar()" type="button" class="btn btn-primary btn-lg"><i
 								class="fa-solid fa-calendar"></i></button>
 					</div>
+					<div class="btn-group me-2">
+						<button @click="logOut()" type="button" class="btn btn-primary btn-lg"><i
+								class="fa-solid fa-right-from-bracket"></i></button>
+					</div>
+
 
 
 
@@ -123,7 +128,8 @@
 								<div class="text-center text-lg-start mt-4 pt-2">
 									<button type="button" data-mdb-button-init data-mdb-ripple-init
 										class="btn btn-primary btn-lg"
-										style="padding-left: 2.5rem; padding-right: 2.5rem;" @click="checkUser()" >Login</button>
+										style="padding-left: 2.5rem; padding-right: 2.5rem;"
+										@click="checkUser()">Login</button>
 									<p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
 											class="link-danger">Register</a></p>
 								</div>

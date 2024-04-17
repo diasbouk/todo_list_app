@@ -179,6 +179,13 @@ createApp({
 
 			}
 		}
+		function logOut() {
+			loginform.value = true
+			user.username.valueOf = ""
+			user.password.valueOf = ""
+
+
+		}
 
 		return {
 			showCalendar,
@@ -192,6 +199,7 @@ createApp({
 			spinner,
 			loginform,
 			checkUser,
+			logOut,
 			user,
 			canvas,
 			todoItem,
