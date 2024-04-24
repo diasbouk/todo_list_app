@@ -8,9 +8,16 @@ createApp({
 		let spinner = ref(true);
 		const liste = ref([]);
 		const loginform = ref(true);
+		const loginFailed = ref(false);
 		const user = { username: "", password: "" };
 		const searcheString = ref("");
 		const todoItem = ref({
+			id: idSt.value,
+			description: "",
+			status: "",
+			done: false,
+		});
+		const temp = ref({
 			id: idSt.value,
 			description: "",
 			status: "",
@@ -110,8 +117,7 @@ createApp({
 			todoItem.value = update;
 		}
 		function updateTodo() {
-			liste.value = liste.value.update((todo) => todo.id != todoItem.value.id);
-			liste.value.push(todoItem.value);
+			todoItem.value = temp.value;
 			emptyTodoItem();
 			liste.value = liste.value.sort((a, b) => a.id - b.id);
 		}
@@ -128,6 +134,10 @@ createApp({
 			liste.value = liste.value.filter((item) =>
 				item.description.toLowerCase().includes(items.toLowerCase()),
 			);
+		}
+		function displayTable() {
+			showTable.value = true;
+			showStatics.value = false;
 		}
 
 		function canvas() {
@@ -147,7 +157,12 @@ createApp({
 							datasets: [
 								{
 									label: "# of Votes",
-									data: [12, 19, 3, 5],
+									data: [
+										completedTasks.length,
+										inProgress.length,
+										canceled.length,
+										timeOut.length,
+									],
 									borderWidth: 1,
 								},
 							],
@@ -169,26 +184,20 @@ createApp({
 			if (user.username == "admin" && user.password == "admin") {
 				loginform.value = false;
 				showTable.value = true;
-			}
-			else {
-				Swal.fire({
-				title: "Failed!",
-				text: "Username or password are incorrect",
-				icon: "error",
-			});
-
+			} else {
+				loginFailed.value = true;
 			}
 		}
 		function logOut() {
-			loginform.value = true
-			user.username.value = ""
-			user.password.value = ""
-
-
+			loginform.value = true;
+			user.username.value = "";
+			user.password.value = "";
 		}
 
 		return {
 			showCalendar,
+			temp,
+			displayTable,
 			showTable,
 			calendar,
 			liste,
@@ -198,6 +207,7 @@ createApp({
 			inProgress,
 			spinner,
 			loginform,
+			loginFailed,
 			checkUser,
 			logOut,
 			user,
