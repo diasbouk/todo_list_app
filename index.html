@@ -214,7 +214,8 @@
 							</button>
 						</td>
 						<td class="fw-bold fs-3">
-							{{task.status}}
+							<span class="badge badge-info">{{task.status}}</span>
+
 						</td>
 						<td v-if="task.done">
 							<button class="btn btn-primary rounded" @click="task.done=false">
