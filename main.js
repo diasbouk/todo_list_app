@@ -53,24 +53,43 @@ createApp({
 			idSt.value = 6;
 			emptyTodoItem();
 		}
+
+		function returnEvents() {
+			events = []
+			for (let el of liste.value) {
+				events.push( {
+					name: el.description,
+					id: el.id,
+					description: el.description,
+					badge: "1-day event",
+					date: "04/26/2024",
+					type: "event",
+					color: "#63d867",
+				});
+				return events
+			}
+		}
+
 		function calendar() {
 			showStatics.value = false;
 			showTable.value = false;
 			showCalendar.value = true;
 			loginform.value = false;
 
+			obj = returnEvents();
 			$("#calendar").evoCalendar({
-				calendarEvents: [
-					{
-						name: "Task 1",
-						id: "4hducye", // Event's id (required, for removing event)
-						description: "Lorem ipsum dolor sit amet..", // Description of event (optional)
-						badge: "1-day event", // Event badge (optional)
-						date: new Date(), // Date of event
-						type: "event", // Type of event (event|holiday|birthday)
-						color: "#63d867", // Event custom color (optional)
-					},
-				],
+				calendarEvents: obj 
+					// {
+					// 	name: "Task 1",
+					// 	id: "4hducye", // Event's id (required, for removing event)
+					// 	description: "Lorem ipsum dolor sit amet..", // Description of event (optional)
+					// 	badge: "1-day event", // Event badge (optional)
+					// 	date: new Date(), // Date of event
+					// 	type: "event", // Type of event (event|holiday|birthday)
+					// 	color: "#63d867", // Event custom color (optional)
+					// },
+					// obj,
+				// ],
 			});
 		}
 
@@ -196,6 +215,7 @@ createApp({
 
 		return {
 			showCalendar,
+			returnEvents,
 			temp,
 			displayTable,
 			showTable,
