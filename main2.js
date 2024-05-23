@@ -1,1 +1,1 @@
-// This is gonna be the OOP implementing of this project
+// This is the oop implementing of this project
