@@ -12,16 +12,17 @@
 
 	<div id="app">
 
-		OOP LET GAW
 		<br>
 		<br>
-		<input type="text" placeholder="Task id" id="taskId">
+		<input type="text" v-model="todoItem.id" placeholder="Task id" id="taskId">
 		<br>
-		<input type="text" placeholder="Task descritpion" id="taskDesc">
+		<input type="text" v-model="todoItem.desc" placeholder="Task descritpion" id="taskDesc">
 
-		<button @click="count++">
-			Count is: {{ count }}
-		</button>
+
+		<button @click="List.createNew()" type="button">Add</button>
+
+		<label v-for="(task) in List.data">{{task.desc}}</label>
+
 	</div>
 
 
